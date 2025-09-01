@@ -1,0 +1,16 @@
+package engine;
+
+public class Collision {
+    public static boolean circleCircle(double x1, double y1, double r1, double x2, double y2, double r2) {
+        double dx = x1 - x2, dy = y1 - y2;
+        double rr = r1 + r2;
+        return dx*dx + dy*dy <= rr*rr;
+    }
+
+    public static boolean circleAABB(double cx, double cy, double r, double rx, double ry, double rw, double rh) {
+        double nearestX = Math.max(rx, Math.min(cx, rx + rw));
+        double nearestY = Math.max(ry, Math.min(cy, ry + rh));
+        double dx = cx - nearestX, dy = cy - nearestY;
+        return dx*dx + dy*dy <= r*r;
+    }
+}
