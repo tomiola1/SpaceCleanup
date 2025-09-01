@@ -1,0 +1,25 @@
+package engine;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Game {
+    public static final int WIDTH = 960;
+    public static final int HEIGHT = 540;
+    private JFrame frame;
+    private GamePanel panel;
+
+    public void start() {
+        SwingUtilities.invokeLater(() -> {
+            frame = new JFrame("Space Cleanup");
+            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            frame.setResizable(false);
+            panel = new GamePanel(WIDTH, HEIGHT);
+            frame.add(panel, BorderLayout.CENTER);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            panel.start();
+        });
+    }
+}
