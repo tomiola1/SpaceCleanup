@@ -1,0 +1,42 @@
+package engine;
+
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+
+public class Assets {
+    public static void drawShip(Graphics2D g, double x, double y, double angle, boolean shielded) {
+        AffineTransform old = g.getTransform();
+        g.translate(x, y);
+        g.rotate(angle);
+        g.setColor(Color.cyan);
+        g.drawPolygon(new int[]{-10, 14, -10}, new int[]{-8, 0, 8}, 3);
+        if (shielded) {
+            g.setColor(new Color(0, 255, 255, 64));
+            g.fillOval(-16, -16, 32, 32);
+            g.setColor(Color.cyan);
+            g.drawOval(-16, -16, 32, 32);
+        }
+        g.setTransform(old);
+    }
+
+    public static void drawAsteroid(Graphics2D g, double x, double y, int r) {
+        g.setColor(new Color(180, 180, 180));
+        g.fillOval((int)(x - r), (int)(y - r), r*2, r*2);
+        g.setColor(Color.darkGray);
+        g.drawOval((int)(x - r), (int)(y - r), r*2, r*2);
+    }
+
+    public static void drawGarbage(Graphics2D g, double x, double y, int r) {
+        g.setColor(new Color(120, 220, 120));
+        g.fillRect((int)(x - r), (int)(y - r), r*2, r*2);
+        g.setColor(new Color(60, 120, 60));
+        g.drawRect((int)(x - r), (int)(y - r), r*2, r*2);
+    }
+
+    public static void drawObstacle(Graphics2D g, int x, int y, int w, int h) {
+        g.setColor(new Color(80, 80, 140));
+        g.fillRoundRect(x, y, w, h, 8, 8);
+        g.setColor(Color.white);
+        g.drawRoundRect(x, y, w, h, 8, 8);
+    }
+}
